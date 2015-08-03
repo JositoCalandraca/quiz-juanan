@@ -43,7 +43,7 @@ var Quiz = sequelize.import(quiz_path);
 exports.Quiz = Quiz
 
 // Crear e inicializar la tabla de preguntas en DB
-// ¡¡ Al principio utiliza el método success (que dará error) y luego los sustituye por el método then
+// ¡¡ Al principio utiliza el método success (que dará error) y luego los sustituye por el método then al añadir BD en Heroku
 // -sequelyze.sync() sincroniza la DB con el método success cuando se ha sincronizado.
 // En el callback de sequelize.sync().success(..) introducimos en la DB la misma pregunta de las versiones anteriores, para que todo funcione igual.
 sequelize.sync().then(function(){
@@ -55,6 +55,9 @@ sequelize.sync().then(function(){
 			// Los campos de la tabla deben tener el mismo nombre que las propiedades
 			Quiz.create({ 	pregunta: 'Capital de Italia',
 					respuesta: 'Roma'
+					});
+			Quiz.create({ 	pregunta: 'Capital de Portugal',
+					respuesta: 'Lisboa'
 					})
 			.then(function(){console.log('Base de datos inicializada')});
 			};

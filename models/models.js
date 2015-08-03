@@ -49,12 +49,15 @@ exports.Quiz = Quiz
 sequelize.sync().then(function(){
 // success(..) ejecuta el manejador una vez creada la tabla
 // - Quiz.count().success(..) devuelve en count el número de filas de la tabla.
-	Quiz. count().then(function(count){
+	Quiz.count().then(function(count){
 		if(count === 0){ // la tabla se inicializa solo si está vacía
 			// -Quiz.create(..objeto..) creala primera pregunta de la tabla
 			// Los campos de la tabla deben tener el mismo nombre que las propiedades
 			Quiz.create({ 	pregunta: 'Capital de Italia',
 					respuesta: 'Roma'
+					});
+			Quiz.create({ 	pregunta: 'Capital de Portugal',
+					respuesta: 'Lisboa'
 					})
 			.then(function(){console.log('Base de datos inicializada')});
 			};

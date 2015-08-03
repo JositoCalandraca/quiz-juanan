@@ -1,5 +1,3 @@
-// routes
-
 //Hay que importar el módulo express explicitamente donde lo vayamos a utilizar, aunque ya esté importado en otro módulo
 var express = require('express');
 var router = express.Router();
@@ -13,9 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/author');
 
-router.get('/quizes', quizController.index);
-// El método por convenio se llama 'show' (antes se llamaba quetion)
-router.get('/quizes/:quizId(\\d+)', quizController.show);
-router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
+router.get('/quizes/question', quizController.question);
+router.get('/quizes/answer', quizController.answer);
 
 module.exports = router;
