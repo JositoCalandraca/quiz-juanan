@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 
 var partials = require('express-partials');
+
+var methodOverride = require('method-override');
 var routes = require('./routes/index');
 //var users = require('./routes/users');
 
@@ -27,6 +29,7 @@ app.use(bodyParser.json());
 // quitamos el {extended:false} para crear bien nuevas pregunts y respuestas
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
