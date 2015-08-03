@@ -1,7 +1,16 @@
 // Importamos el modelo para poder acceder a DB
 var models = require('../models/models.js');
 
-// GET /quizes/question
+
+// GET /quizes
+exports.index = function(req, res){
+	models.Quiz.findAll().then(function(quizes){
+		res.render('quizes/index.ejs', {quizes: quizes});
+	})
+};
+
+
+// GET /quizes/show
 // Con los métodos models.Quiz.findAll() o find() buscamos los datos en la tabla Quiz y los procesamos en el callback del método success(..)
 // ¡¡ Sustituimos el método success por el método then ('promesa') ya que el método 'success ha quedado anticuado
 exports.show = function(req, res){

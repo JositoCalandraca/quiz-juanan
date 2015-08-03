@@ -1,3 +1,5 @@
+// routes
+
 //Hay que importar el módulo express explicitamente donde lo vayamos a utilizar, aunque ya esté importado en otro módulo
 var express = require('express');
 var router = express.Router();
