@@ -13,6 +13,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/author');
 
+// Autoload de comandos con :quizId
+// Si el parámetro 'quizId' existe en la ruta, entonces se invoca quizController.load()
+router.param('quizId', quizController.load); // autoload :quizId
+// Definición de rutas de /quizes
 router.get('/quizes', quizController.index);
 // El método por convenio se llama 'show' (antes se llamaba quetion)
 router.get('/quizes/:quizId(\\d+)', quizController.show);

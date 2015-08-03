@@ -3,8 +3,9 @@ var models = require('../models/models.js');
 
 // Autoload - factoriza el código si la ruta incluye :quizId
 // coge el objeto de la BD
+// cambiado models.Quiz.find por models.Quiz.findById
 exports.load = function(req, res, next, quizId) {
-	models.Quiz.find(quizId).then(
+	models.Quiz.findById(quizId).then(
 		function(quiz){
 			if(quiz){
 				req.quiz = quiz;
@@ -14,6 +15,23 @@ exports.load = function(req, res, next, quizId) {
 ).catch(function(error){next(error);});
 };
 
+// GET /quizes/new
+exports.new = function(req, res){
+	var quiz = models.Quiz.build( // crea objeto quiz
+		{pregunta: 'Pregunta', respuesta: "Respuesta"}
+	);
+	res.render('quizes/new', {quiz: quiz});
+};
+
+
+// POST /quizes/create
+exports.create = function(req, res) {
+	var quiz = models.quiz.build(req.body.quiz);
+	// guarda en DB los campos pregunta y respuesta de quiz
+	// esto es así para impedir que se guarden campos añadidos con virus
+	quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){res.redirect('/quizes');
+	}) // Redirección HTTP (URL relativo) lista de preguntas
+};
 
 // GET /quizes
 exports.index = function(req, res){
